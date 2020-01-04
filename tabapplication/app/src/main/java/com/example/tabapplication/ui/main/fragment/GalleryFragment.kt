@@ -66,10 +66,9 @@ class GalleryFragment : Fragment(), GalleryImageClickListener {
         }
         recyclerview.layoutManager = GridLayoutManager(context, SPAN_COUNT)
         recyclerview.adapter = galleryAdapter
-
+        tedPermission()
         val mFab: FloatingActionButton = view.findViewById(R.id.addButton)
         mFab.setOnClickListener{
-            tedPermission()
             if(isPermission) goToAlbum()
             else Toast.makeText(view.context, resources.getString(R.string.permission_2), Toast.LENGTH_LONG).show();
         }
@@ -164,7 +163,10 @@ class GalleryFragment : Fragment(), GalleryImageClickListener {
 
             if (data != null) {
                 if(data.clipData== null){
-                    Toast.makeText(context, "다중 선택이 불가한 기기입니다.", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, "다중 선택이 불가한 기기입니다.", Toast.LENGTH_LONG).show()
+                    val photoUri: Uri? = data!!.data
+                    imageList.add(Image("new",photoUri.toString()))
+                    galleryAdapter.notifyDataSetChanged()
                 } else{
                     var clipData: ClipData ?= data.clipData
                     Log.i("clipdata", clipData!!.itemCount.toString())

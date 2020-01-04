@@ -1,8 +1,7 @@
 package com.example.tabapplication.ui.main.fragment
 
-
-
 import android.Manifest.permission.READ_CONTACTS
+import android.Manifest.permission.WRITE_CONTACTS
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -15,12 +14,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabapplication.R
-import com.example.tabapplication.ui.main.adapter.GalleryImageAdapter
 import com.example.tabapplication.ui.main.adapter.NumberAdapter
-import kotlinx.android.synthetic.main.fragment_number.view.*
+import com.example.tabapplication.ui.main.adapter.SwipeToDeleteCallback
 
 /**
  * A simple [Fragment] subclass.
@@ -30,19 +30,18 @@ class NumberFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
 //    private lateinit var viewManager: RecyclerView.LayoutManager
 
-
-
     private lateinit var numberAdapter: NumberAdapter
 
     companion object{
         private const val READ_CONTACTS_PERMISSIONS_REQUEST = 1
-    }
+        private const val WRITE_CONTACTS_PERMISSIONS_REQUEST = 1
 
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getPermissionToReadUserContacts();
-
+        getPermissionToWriteUserContacts()
     }
 
     override fun onCreateView(
@@ -58,12 +57,24 @@ class NumberFragment : Fragment() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+
+
+        val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = viewAdapter as NumberAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+
+
         return view
     }
 
     data class Contact(val name: String, val phoneNumber: String)
 
-    fun Context.fetchAllContacts(): List<Contact> {
+    fun Context.fetchAllContacts(): MutableList<Contact> {
         contentResolver.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
             null,
@@ -72,16 +83,18 @@ class NumberFragment : Fragment() {
             null
         )
             .use { cursor ->
-                if (cursor == null) return emptyList()
+                //                if (cursor == null) return MutableList().empty
                 val builder = ArrayList<Contact>()
-                while (cursor.moveToNext()) {
-                    val name =
-                        cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-                            ?: "N/A"
-                    val phoneNumber =
-                        cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                            ?: "N/A"
-                    builder.add(Contact(name, phoneNumber))
+                if (cursor != null) {
+                    while (cursor.moveToNext()) {
+                        val name =
+                            cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+                                ?: "N/A"
+                        val phoneNumber =
+                            cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                                ?: "N/A"
+                        builder.add(Contact(name, phoneNumber))
+                    }
                 }
                 return builder
             }
@@ -97,6 +110,21 @@ class NumberFragment : Fragment() {
             requestPermissions(
                 arrayOf(READ_CONTACTS),
                 READ_CONTACTS_PERMISSIONS_REQUEST
+            )
+        } else {
+            layContactsList()
+        }
+    }
+
+    fun getPermissionToWriteUserContacts() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                WRITE_CONTACTS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(
+                arrayOf(WRITE_CONTACTS),
+                WRITE_CONTACTS_PERMISSIONS_REQUEST
             )
         } else {
             layContactsList()
@@ -119,6 +147,16 @@ class NumberFragment : Fragment() {
                     .show()
             }
         }
+
+        if (requestCode == NumberFragment.WRITE_CONTACTS_PERMISSIONS_REQUEST) {
+            if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(context, "Write Contacts permission granted", Toast.LENGTH_SHORT).show()
+                layContactsList()
+            } else {
+                Toast.makeText(context, "Write Contacts permission denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     fun layContactsList() {
@@ -128,8 +166,4 @@ class NumberFragment : Fragment() {
             startActivity(intent)
         }
     }
-
-
-
-
 }

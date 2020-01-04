@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.tabapplication.ui.main.fragment.GalleryFragment
-import com.example.tabapplication.ui.main.fragment.MapFragment
+import com.example.tabapplication.ui.main.fragment.WordFragment
 import com.example.tabapplication.ui.main.fragment.NumberFragment
 
 
@@ -24,7 +24,7 @@ class SectionsPagerAdapter(fm: FragmentManager) :
                 GalleryFragment()
             }
             else -> {
-                return MapFragment()
+                return WordFragment()
             }
         }
     }
