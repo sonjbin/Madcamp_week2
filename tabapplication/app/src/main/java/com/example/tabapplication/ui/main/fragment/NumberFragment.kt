@@ -27,7 +27,7 @@ import com.example.tabapplication.ui.main.adapter.SwipeToDeleteCallback
  */
 class NumberFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private  var viewAdapter: RecyclerView.Adapter<*>? = null
 //    private lateinit var viewManager: RecyclerView.LayoutManager
 
     private lateinit var numberAdapter: NumberAdapter
@@ -40,8 +40,16 @@ class NumberFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getPermissionToReadUserContacts();
+        getPermissionToReadUserContacts()
         getPermissionToWriteUserContacts()
+    }
+
+    fun layContactsList() {
+        viewAdapter = NumberAdapter(requireContext().fetchAllContacts()) {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:${it.phoneNumber}")
+            startActivity(intent)
+        }
     }
 
     override fun onCreateView(
@@ -50,12 +58,16 @@ class NumberFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
+
         val view = inflater.inflate(R.layout.fragment_number, container, false)
         recyclerView = view.findViewById<RecyclerView>(R.id.my_recycler_view).apply {
             var viewManager : RecyclerView.LayoutManager = LinearLayoutManager(context)
 
             layoutManager = viewManager
-            adapter = viewAdapter
+            if(viewAdapter != null) {
+                adapter = viewAdapter
+            }
         }
 
 
@@ -159,11 +171,5 @@ class NumberFragment : Fragment() {
 
     }
 
-    fun layContactsList() {
-        viewAdapter = NumberAdapter(requireContext().fetchAllContacts()) {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:${it.phoneNumber}")
-            startActivity(intent)
-        }
-    }
+
 }
