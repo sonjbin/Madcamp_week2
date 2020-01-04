@@ -1,0 +1,103 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.tabapplication"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="15"
+8-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.READ_CONTACTS" />
+11-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:4:5-72
+11-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:4:22-69
+12    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+12-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:5:5-73
+12-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:5:22-70
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:6:5-81
+13-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:6:22-78
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:7:5-79
+14-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:7:22-77
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:8:5-67
+15-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:8:22-64
+16
+17    <application
+17-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:9:5-33:19
+18        android:allowBackup="true"
+18-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:10:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.1.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\e9d267c39890385adcadf7222b957ff3\core-1.1.0\AndroidManifest.xml:24:18-86
+20        android:icon="@mipmap/ic_launcher_cat"
+20-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:11:9-47
+21        android:label="@string/app_name"
+21-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:12:9-41
+22        android:roundIcon="@mipmap/ic_launcher_cat_round"
+22-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:13:9-58
+23        android:supportsRtl="true"
+23-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:14:9-35
+24        android:theme="@style/AppTheme" >
+24-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:15:9-40
+25        <activity
+25-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:16:9-26:20
+26            android:name="com.example.tabapplication.MainActivity"
+26-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:17:13-41
+27            android:label="@string/app_name"
+27-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:18:13-45
+28            android:screenOrientation="unspecified"
+28-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:20:13-52
+29            android:theme="@style/AppTheme.NoActionBar" >
+29-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:19:13-56
+30            <intent-filter>
+30-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:21:13-25:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:22:17-69
+31-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:22:25-66
+32
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:24:17-77
+33-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:24:27-74
+34            </intent-filter>
+35        </activity>
+36        <activity
+36-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:27:1-30:7
+37            android:name="com.example.tabapplication.ui.main.activity.WordQuizActivity"
+37-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:27:11-60
+38            android:label="Quiz"
+38-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:28:5-25
+39            android:theme="@style/AppTheme" />
+39-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:29:5-36
+40        <activity
+40-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:31:9-32:58
+41            android:name="com.example.tabapplication.ui.main.activity.WordAddActivity"
+41-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:31:19-69
+42            android:theme="@style/AppTheme.NoActionBar" />
+42-->C:\Users\q\AndroidStudioProjects\tabapplication\app\src\main\AndroidManifest.xml:32:13-56
+43        <activity
+43-->[gun0912.ted:tedpermission:2.2.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\6b560d4a81056f68facea4d9de1593fe\jetified-tedpermission-2.2.0\AndroidManifest.xml:10:9-14:67
+44            android:name="com.gun0912.tedpermission.TedPermissionActivity"
+44-->[gun0912.ted:tedpermission:2.2.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\6b560d4a81056f68facea4d9de1593fe\jetified-tedpermission-2.2.0\AndroidManifest.xml:11:13-75
+45            android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
+45-->[gun0912.ted:tedpermission:2.2.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\6b560d4a81056f68facea4d9de1593fe\jetified-tedpermission-2.2.0\AndroidManifest.xml:12:13-144
+46            android:screenOrientation="unspecified"
+46-->[gun0912.ted:tedpermission:2.2.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\6b560d4a81056f68facea4d9de1593fe\jetified-tedpermission-2.2.0\AndroidManifest.xml:13:13-52
+47            android:theme="@style/Theme.Transparent.Permission" />
+47-->[gun0912.ted:tedpermission:2.2.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\6b560d4a81056f68facea4d9de1593fe\jetified-tedpermission-2.2.0\AndroidManifest.xml:14:13-64
+48
+49        <provider
+49-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\a0fa8fd0788ee94594cd7546b6b1ed31\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
+50            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+50-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\a0fa8fd0788ee94594cd7546b6b1ed31\lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
+51            android:authorities="com.example.tabapplication.lifecycle-process"
+51-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\a0fa8fd0788ee94594cd7546b6b1ed31\lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
+52            android:exported="false"
+52-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\a0fa8fd0788ee94594cd7546b6b1ed31\lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
+53            android:multiprocess="true" />
+53-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\q\.gradle\caches\transforms-2\files-2.1\a0fa8fd0788ee94594cd7546b6b1ed31\lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
+54    </application>
+55
+56</manifest>
