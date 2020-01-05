@@ -5,16 +5,22 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageSwitcher
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tabapplication.ui.main.activity.TabActivity
+import com.example.tabapplication.ui.main.helper.BackPressCloseHandler
 import com.example.tabapplication.ui.main.helper.LoginCallback
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginManager
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -29,14 +35,13 @@ class MainActivity : AppCompatActivity() {
 
     private var btn_custom_login: Button? = null
 
-
     private var mLoginCallback: LoginCallback? = null
 
     private var mCallbackManager: CallbackManager? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         getHashKey()
         val accessToken: AccessToken? = AccessToken.getCurrentAccessToken()
         val isLoggedin: Boolean = accessToken != null && !accessToken.isExpired
@@ -45,12 +50,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             this.finish()
         }
-//        else {
-//            Toast.makeText(this,"AA",Toast.LENGTH_LONG).show()
-//        }
-        setContentView(R.layout.activity_main)
 
-        mContext = applicationContext
+        setContentView(R.layout.activity_main)
+//
+//        var alpha: Drawable = findViewById<ImageView>(R.id.bg_main).drawable
+//        //255 * 50%
+//        alpha.alpha = 200
+
+        mContext = this.applicationContext
+        FacebookSdk.sdkInitialize(mContext)
+        AppEventsLogger.activateApp(application)
+
         mCallbackManager = CallbackManager.Factory.create()
         mLoginCallback = LoginCallback()
         btn_custom_login = findViewById(R.id.btn_custom_login) as Button
@@ -62,8 +72,12 @@ class MainActivity : AppCompatActivity() {
             )
             loginManager.registerCallback(mCallbackManager, mLoginCallback)
         }
-    }
 
+        val btn_exit: Button = findViewById(R.id.btn_exit)
+        btn_exit.setOnClickListener{
+            finish()
+        }
+    }
 
     override fun onActivityResult(
         requestCode: Int,
@@ -104,4 +118,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

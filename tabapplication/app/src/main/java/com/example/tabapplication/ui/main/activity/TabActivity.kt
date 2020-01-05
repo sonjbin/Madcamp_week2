@@ -12,17 +12,23 @@ import androidx.viewpager.widget.ViewPager
 import com.example.tabapplication.MainActivity
 import com.example.tabapplication.R
 import com.example.tabapplication.ui.main.adapter.SectionsPagerAdapter
+import com.example.tabapplication.ui.main.helper.BackPressCloseHandler
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 
 
+@Suppress("DEPRECATION")
 class TabActivity : AppCompatActivity() {
-
+    lateinit var  backPressCloseHandler: BackPressCloseHandler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_tab)
+
+        backPressCloseHandler = BackPressCloseHandler(this)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
@@ -63,7 +69,11 @@ class TabActivity : AppCompatActivity() {
         if(Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             super.setRequestedOrientation(requestedOrientation)
         }
+    }
 
+    //뒤로가기 두 번 눌러야 꺼지게 변경
+    override fun onBackPressed() {
+        backPressCloseHandler.onBackPressed()
     }
 }
 

@@ -41,6 +41,8 @@ class WordQuizActivity : AppCompatActivity() {
 
         //이미 나왔던 단어는 빼기
         wordArrayList.removeAt(num)
+
+        //배경 투명도
         var alpha: Drawable = findViewById<ImageView>(R.id.image).drawable
         alpha.alpha = 50
 
