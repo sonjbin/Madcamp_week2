@@ -53,7 +53,6 @@ class TabActivity : AppCompatActivity() {
             val intent: Intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             this.finish()
-
         }
         builderLogout.setNegativeButton("Cancel"){
                 dialog, id ->

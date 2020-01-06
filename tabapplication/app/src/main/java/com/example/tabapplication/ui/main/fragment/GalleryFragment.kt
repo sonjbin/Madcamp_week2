@@ -14,7 +14,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -22,6 +25,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabapplication.R
 import com.example.tabapplication.R.layout.fragment_gallery
+import com.example.tabapplication.ui.main.activity.WordAddActivity
+import com.example.tabapplication.ui.main.activity.WordQuizActivity
 import com.example.tabapplication.ui.main.adapter.GalleryImageAdapter
 import com.example.tabapplication.ui.main.adapter.GalleryImageClickListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,7 +43,7 @@ private var isPermission = true
 @Suppress("DEPRECATION")
 class GalleryFragment : Fragment(), GalleryImageClickListener {
 
-    private val TAG: String = "Jungbin";
+    private val TAG: String = "Jungbin"
     private var SPAN_COUNT = 3
     private val imageList = java.util.ArrayList<Image>()
     lateinit var galleryAdapter: GalleryImageAdapter
@@ -58,6 +63,7 @@ class GalleryFragment : Fragment(), GalleryImageClickListener {
         galleryAdapter = GalleryImageAdapter(imageList)
         galleryAdapter.listener = this
 
+
         loadImages()
         var recyclerview: RecyclerView =  view.findViewById(R.id.recyclerView)
         //가로모드인 경우 col수 4개로 바꿈
@@ -67,11 +73,12 @@ class GalleryFragment : Fragment(), GalleryImageClickListener {
         recyclerview.layoutManager = GridLayoutManager(context, SPAN_COUNT)
         recyclerview.adapter = galleryAdapter
         tedPermission()
-        val mFab: FloatingActionButton = view.findViewById(R.id.addButton)
-        mFab.setOnClickListener{
-            if(isPermission) goToAlbum()
-            else Toast.makeText(view.context, resources.getString(R.string.permission_2), Toast.LENGTH_LONG).show();
-        }
+//        val mFab: FloatingActionButton = view.findViewById(R.id.plusFab_gallery)
+//        mFab.setOnClickListener{
+//
+//        }
+
+        addButtonAnimation(view, R.id.plusLayout_gallery, R.id.add_album_Layout,R.id.add_server_Layout, R.id.plusFab_gallery,R.id.addFab_album,R.id.addFab_server)
 
         return view
     }
@@ -174,9 +181,7 @@ class GalleryFragment : Fragment(), GalleryImageClickListener {
                     if(clipData.itemCount > 9){
                         Toast.makeText(context,"사진은 9장까지 선택 가능합니다", Toast.LENGTH_LONG).show()
                     }
-        //                else if(clipData.itemCount == 1){
-        //
-        //                }
+
                     else{
                         for(i in 0 until clipData.itemCount){
                             imageList.add(Image("new",clipData.getItemAt(i).uri.toString()))
@@ -186,31 +191,49 @@ class GalleryFragment : Fragment(), GalleryImageClickListener {
                 }
             }
 
-            //val photoUri: Uri? = data!!.data
-            //imageList.add(Image("new",photoUri.toString()))
+        }
+    }
 
-//            try{
-//                val proj =
-//                    arrayOf(MediaStore.Images.Media.DATA)
-//
-//                assert(photoUri != null)
-//                var contentResolver: ContentResolver = object: ContentResolver(context){
-//
-//                }
-//                cursor =  contentResolver.query(photoUri!!, proj, null, null, null)
-//
-//                assert(cursor != null)
-//                val column_index = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-//
-//                cursor.moveToFirst()
-//
-//                tempFile = File(cursor.getString(column_index))
-//                Log.d(TAG, "tempFile Uri: " + Uri.fromFile(tempFile))
-//            }
-//            finally {
-//                cursor?.close()
-//            }
-            //addImage();
+    fun addButtonAnimation(view:View, layout1: Int, layout2: Int,layout3: Int, fab1: Int, fab2: Int, fab3: Int){
+        val fab1: FloatingActionButton = view.findViewById(fab1)
+        val fab2: FloatingActionButton = view.findViewById(fab2)
+        val fab3: FloatingActionButton = view.findViewById(fab3)
+        val layout1: LinearLayout = view.findViewById(layout2)
+        val layout2: LinearLayout = view.findViewById(layout3)
+        val showButtonAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.show_button)
+        val hideButtonAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.hide_button)
+        val showLayoutAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.show_layout)
+        val hideLayoutAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.hide_layout)
+
+        fab1.setOnClickListener{
+            if(layout1.visibility == View.VISIBLE && layout2.visibility == View.VISIBLE ){
+                layout1.visibility = View.GONE
+                layout2.visibility = View.GONE
+                fab2.isClickable = false
+                fab3.isClickable = false
+                fab1.startAnimation(hideButtonAnim)
+                layout1.startAnimation(hideLayoutAnim)
+                layout2.startAnimation(hideLayoutAnim)
+            }
+            else{
+                layout1.visibility = View.VISIBLE
+                layout2.visibility = View.VISIBLE
+                fab2.isClickable = true
+                fab3.isClickable = true
+                fab1.startAnimation(showButtonAnim)
+                layout1.startAnimation(showLayoutAnim)
+                layout2.startAnimation(showLayoutAnim)
+            }
+        }
+
+        fab2.setOnClickListener{
+            if(isPermission) goToAlbum()
+            else Toast.makeText(view.context, resources.getString(R.string.permission_2), Toast.LENGTH_LONG).show()
+        }
+
+        fab3.setOnClickListener{
+
+
         }
     }
 

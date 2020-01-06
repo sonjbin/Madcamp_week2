@@ -69,7 +69,7 @@
             android:layout_marginBottom="0dp"
             android:clickable="false"
             android:src="@android:drawable/ic_media_play"
-            app:backgroundTint="#ffe4e1"
+            app:backgroundTint="@color/colorPrimary"
             app:elevation="0dp"/>
     </LinearLayout>
 
@@ -104,7 +104,7 @@
             android:layout_marginBottom="0dp"
             android:clickable="false"
             android:src="@android:drawable/ic_menu_edit"
-            app:backgroundTint="#ffe4e1"
+            app:backgroundTint="@color/colorPrimary"
             app:elevation="0dp"/>
     </LinearLayout>
 

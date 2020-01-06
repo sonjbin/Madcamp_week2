@@ -87,11 +87,10 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         mCallbackManager!!.onActivityResult(requestCode, resultCode, data)
 
-
         if(resultCode == Activity.RESULT_OK) {
             val intent: Intent = Intent(this, TabActivity::class.java)
             startActivity(intent)
-            this.finish();
+            this.finish()
         }
         else{
             Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_LONG).show()

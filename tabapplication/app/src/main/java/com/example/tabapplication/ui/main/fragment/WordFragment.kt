@@ -72,62 +72,7 @@ class WordFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = viewManager
 
-
-
-        val plusFab: FloatingActionButton = view.findViewById(R.id.plusFab)
-        val quizFab: FloatingActionButton = view.findViewById(R.id.quizFab)
-        val addFab: FloatingActionButton = view.findViewById(R.id.addFab)
-        val quizLayout: LinearLayout = view.findViewById(R.id.quizLayout)
-        val addLayout: LinearLayout = view.findViewById(R.id.addLayout)
-        val showButtonAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.show_button)
-        val hideButtonAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.hide_button)
-        val showLayoutAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.show_layout)
-        val hideLayoutAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.hide_layout)
-
-        plusFab.setOnClickListener{
-            if(quizLayout.visibility == View.VISIBLE && addLayout.visibility == View.VISIBLE ){
-                quizLayout.visibility = View.GONE
-                addLayout.visibility = View.GONE
-                quizFab.isClickable = false
-                addFab.isClickable = false
-                plusFab.startAnimation(hideButtonAnim)
-                quizLayout.startAnimation(hideLayoutAnim)
-                addLayout.startAnimation(hideLayoutAnim)
-            }
-            else{
-                quizLayout.visibility = View.VISIBLE
-                addLayout.visibility = View.VISIBLE
-                quizFab.isClickable = true
-                addFab.isClickable = true
-                plusFab.startAnimation(showButtonAnim)
-                quizLayout.startAnimation(showLayoutAnim)
-                addLayout.startAnimation(showLayoutAnim)
-            }
-        }
-
-        quizFab.setOnClickListener{
-            val intent = Intent(activity, WordQuizActivity::class.java)
-            intent.putParcelableArrayListExtra("wordArray", wordArrayList)
-            startActivity(intent)
-        }
-
-        addFab.setOnClickListener{
-
-//            wordArrayList.add(Word("A", "B"))
-//            adapter = ListAdapter(wordArrayList)
-//            recyclerView.adapter = adapter
-            val addintent = Intent(activity, WordAddActivity::class.java)
-            startActivityForResult(addintent, 0)
-//            Toast.makeText(context, "AAA", Toast.LENGTH_LONG)
-//            val main = Intent(activity, WordFragment::class.java)
-//            val vocabulary = intent.getStringExtra("vocabulary")
-//            val meaning = intent.getStringExtra("meaning")
-//            wordArrayList.add(Word(vocabulary, meaning))
-//            adapter = ListAdapter(wordArrayList)
-//            recyclerView.adapter = adapter
-
-        }
-
+        addButtonAnimation(view, R.id.plusLayout, R.id.quizLayout, R.id.addLayout, R.id.plusFab, R.id.quizFab, R.id.addFab)
 
         return view
     }
@@ -145,6 +90,52 @@ class WordFragment : Fragment() {
                 adapter = WordListAdapter(wordArrayList)
                 recyclerView!!.adapter = adapter
             }
+        }
+    }
+
+    fun addButtonAnimation(view:View, layout1: Int, layout2: Int,layout3: Int, fab1: Int, fab2: Int, fab3: Int){
+        val fab1: FloatingActionButton = view.findViewById(fab1)
+        val fab2: FloatingActionButton = view.findViewById(fab2)
+        val fab3: FloatingActionButton = view.findViewById(fab3)
+        val layout1: LinearLayout = view.findViewById(layout2)
+        val layout2: LinearLayout = view.findViewById(layout3)
+        val showButtonAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.show_button)
+        val hideButtonAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.hide_button)
+        val showLayoutAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.show_layout)
+        val hideLayoutAnim: Animation = AnimationUtils.loadAnimation(context,R.anim.hide_layout)
+
+        fab1.setOnClickListener{
+            if(layout1.visibility == View.VISIBLE && layout2.visibility == View.VISIBLE ){
+                layout1.visibility = View.GONE
+                layout2.visibility = View.GONE
+                fab2.isClickable = false
+                fab3.isClickable = false
+                fab1.startAnimation(hideButtonAnim)
+                layout1.startAnimation(hideLayoutAnim)
+                layout2.startAnimation(hideLayoutAnim)
+            }
+            else{
+                layout1.visibility = View.VISIBLE
+                layout2.visibility = View.VISIBLE
+                fab2.isClickable = true
+                fab3.isClickable = true
+                fab1.startAnimation(showButtonAnim)
+                layout1.startAnimation(showLayoutAnim)
+                layout2.startAnimation(showLayoutAnim)
+            }
+        }
+
+        fab2.setOnClickListener{
+            val intent = Intent(activity, WordQuizActivity::class.java)
+            intent.putParcelableArrayListExtra("wordArray", wordArrayList)
+            startActivity(intent)
+        }
+
+        fab3.setOnClickListener{
+
+            val addintent = Intent(activity, WordAddActivity::class.java)
+            startActivityForResult(addintent, 0)
+
         }
     }
 
