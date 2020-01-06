@@ -12,9 +12,7 @@ import java.util.*
 
 
 class LoginCallback : FacebookCallback<LoginResult> {
-    companion object{
-        var facebookuid = ""
-    }
+
     // 로그인 성공 시 호출 됩니다. Access Token 발급 성공.
     override fun onSuccess(loginResult: LoginResult) {
         Log.e("Callback :: ", "onSuccess")
@@ -37,7 +35,7 @@ class LoginCallback : FacebookCallback<LoginResult> {
         val graphRequest = GraphRequest.newMeRequest(
             token
         ) { `object`, _ -> Log.e("result", "${`object`}")
-        facebookuid = `object`.get("id").toString()
+        val facebookuid = `object`.get("id").toString()
             val send = userTask(facebookuid)
             send.execute()}
         val parameters = Bundle()
