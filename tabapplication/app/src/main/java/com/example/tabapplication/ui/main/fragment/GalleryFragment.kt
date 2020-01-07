@@ -3,9 +3,7 @@ package com.example.tabapplication.ui.main.fragment
 import android.Manifest
 import android.app.Activity
 import android.content.*
-import android.content.pm.ActivityInfo
 import android.content.res.Configuration
-import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -25,10 +22,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tabapplication.R
 import com.example.tabapplication.R.layout.fragment_gallery
-import com.example.tabapplication.ui.main.activity.WordAddActivity
-import com.example.tabapplication.ui.main.activity.WordQuizActivity
 import com.example.tabapplication.ui.main.adapter.GalleryImageAdapter
-import com.example.tabapplication.ui.main.adapter.GalleryImageClickListener
+import com.example.tabapplication.ui.main.adapter.ClickListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
@@ -41,7 +36,7 @@ private const val PICK_FROM_ALBUM = 1
 private var tempFile: File? = null
 private var isPermission = true
 @Suppress("DEPRECATION")
-class GalleryFragment : Fragment(), GalleryImageClickListener {
+class GalleryFragment : Fragment(), ClickListener {
 
     private val TAG: String = "Jungbin"
     private var SPAN_COUNT = 3

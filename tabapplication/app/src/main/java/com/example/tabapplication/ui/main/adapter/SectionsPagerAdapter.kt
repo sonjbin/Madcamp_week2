@@ -3,6 +3,7 @@ package com.example.tabapplication.ui.main.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.tabapplication.ui.main.fragment.CookbookFragment
 import com.example.tabapplication.ui.main.fragment.GalleryFragment
 import com.example.tabapplication.ui.main.fragment.WordFragment
 import com.example.tabapplication.ui.main.fragment.NumberFragment
@@ -24,7 +25,7 @@ class SectionsPagerAdapter(fm: FragmentManager) :
                 GalleryFragment()
             }
             else -> {
-                return WordFragment()
+                return CookbookFragment()
             }
         }
     }

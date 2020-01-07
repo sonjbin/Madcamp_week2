@@ -19,11 +19,4 @@ data class Word(
         writeString(meaning)
     }
 
-    companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<Word> = object : Parcelable.Creator<Word> {
-            override fun createFromParcel(source: Parcel): Word = Word(source)
-            override fun newArray(size: Int): Array<Word?> = arrayOfNulls(size)
-        }
-    }
 }

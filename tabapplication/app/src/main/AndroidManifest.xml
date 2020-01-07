@@ -38,6 +38,7 @@
     />
         <activity android:name = ".ui.main.activity.WordAddActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.main.activity.ChooseActivity"/>
     </application>
 
 </manifest>

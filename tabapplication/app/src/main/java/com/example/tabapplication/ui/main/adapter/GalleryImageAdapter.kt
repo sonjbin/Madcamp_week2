@@ -1,6 +1,7 @@
 package com.example.tabapplication.ui.main.adapter
 
 import android.content.Context
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.item_gallery_image.view.*
 class GalleryImageAdapter(private val itemList: List<Image>) : RecyclerView.Adapter<GalleryImageAdapter.ViewHolder>() {
 
     private var context: Context? = null
-    var listener: GalleryImageClickListener? = null
+    var listener: ClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -33,18 +34,18 @@ class GalleryImageAdapter(private val itemList: List<Image>) : RecyclerView.Adap
         holder.bind()
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(root: View) : RecyclerView.ViewHolder(root) {
 
         fun bind() {
 
             val image = itemList[adapterPosition]
 
-            // load image
             GlideApp.with(context!!)
                 .load(image.imageUri)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(itemView.ivGalleryImage)
+                .into(itemView.ivGalleryImage)        // load image
+
 
             // adding click or tap handler for our image layout
             itemView.container.setOnClickListener {

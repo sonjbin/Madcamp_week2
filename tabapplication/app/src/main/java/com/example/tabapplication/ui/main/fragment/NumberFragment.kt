@@ -121,7 +121,6 @@ class NumberFragment : Fragment() {
                 val adapter = viewAdapter as NumberAdapter
                 val deleteTask = delete_contactTask(contactList[viewHolder.adapterPosition].phoneNumber)
                 deleteTask.execute()
-                Log.e("AA",viewHolder.adapterPosition.toString())
                 adapter.removeAt(viewHolder.adapterPosition)
 
             }
