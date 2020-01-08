@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/ing_image_item"
+        android:layout_width="92dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_perm_identity_24px"
+        android:backgroundTint="@color/transparent"
+        android:scaleType="centerInside"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/ing_text_item"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Ingredient"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:layout_centerInParent="true"
+ />
+</RelativeLayout>
+

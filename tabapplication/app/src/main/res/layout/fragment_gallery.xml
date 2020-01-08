@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.fragment.GalleryFragment" />
+
+    <LinearLayout
+        android:id="@+id/plusLayout_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity = "bottom|end"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/plusFab_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/softGray"
+            app:elevation="0dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_album_Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity = "bottom|end"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="30dp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text ="Album"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addFab_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:clickable="false"
+            android:src="@android:drawable/ic_media_play"
+            app:backgroundTint="@color/colorPrimary"
+            app:elevation="0dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_server_Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity = "bottom|end"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="170dp"
+        android:layout_marginRight="30dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text ="Load"
+            android:textColor="#000000"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addFab_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:clickable="false"
+            android:src="@android:drawable/ic_menu_edit"
+            app:backgroundTint="@color/colorPrimary"
+            app:elevation="0dp"/>
+    </LinearLayout>
+
+
+</com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+
